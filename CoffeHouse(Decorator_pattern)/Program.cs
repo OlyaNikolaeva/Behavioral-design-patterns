@@ -12,7 +12,7 @@ namespace CoffeHouse_Decorator_pattern_
             Console.WriteLine(beverage.GetDescription() + " $" + beverage.Cost());
 
             Beverage beverage2 = new DarkRoast();
-            //beverage2.SetSize(Beverage.Size.GRANDE);
+            beverage2.SetSize(Beverage.Size.GRANDE);
             beverage2 = new Mocha(beverage2);
             beverage2 = new Mocha(beverage2);
             beverage2 = new Whip(beverage2);
