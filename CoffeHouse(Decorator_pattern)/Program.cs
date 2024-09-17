@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using CoffeHouse_Decorator_pattern_.coffee;
+using CoffeHouse_Decorator_pattern_.decorators;
+using System.ComponentModel;
 
 namespace CoffeHouse_Decorator_pattern_
 {
@@ -10,6 +12,7 @@ namespace CoffeHouse_Decorator_pattern_
             Console.WriteLine(beverage.GetDescription() + " $" + beverage.Cost());
 
             Beverage beverage2 = new DarkRoast();
+            //beverage2.SetSize(Beverage.Size.GRANDE);
             beverage2 = new Mocha(beverage2);
             beverage2 = new Mocha(beverage2);
             beverage2 = new Whip(beverage2);
@@ -20,123 +23,6 @@ namespace CoffeHouse_Decorator_pattern_
             beverage3 = new Mocha(beverage3);
             beverage3 = new Whip(beverage3);
             Console.WriteLine(beverage3.GetDescription() + " " + beverage3.Cost());
-        }
-    }
-    public abstract class Beverage 
-    {
-        public string Description = "Unknown beverage";
-
-        public virtual string GetDescription()
-        {
-            return Description;
-        }
-        public abstract double Cost();
-    }
-
-    public abstract class CondimentDecorator : Beverage
-    {
-        protected Beverage beverage;
-
-        public override string GetDescription()
-        {
-            return beverage.GetDescription();
-        }
-    }
-
-    public class Espresso : Beverage
-    {
-        public Espresso()
-        {
-            Description = "Espresso";
-        }
-        public override double Cost()
-        {
-            return 1.99;
-        }
-    }
-    public class HouseBlend : Beverage
-    {
-        public HouseBlend()
-        {
-            Description = "House Blend Coffe";
-        }
-        public override double Cost()
-        {
-            return .89;
-        }
-    }
-    public class DarkRoast : Beverage
-    {
-        public DarkRoast()
-        {
-            Description = "Dark Roast Coffe";
-        }
-        public override double Cost()
-        {
-            return .99;
-        }
-    }
-
-    public class Decaf : Beverage
-    {
-        public Decaf()
-        {
-            Description = "Decaf";
-        }
-        public override double Cost()
-        {
-            return 1.05;
-        }
-    }
-
-    public class Mocha : CondimentDecorator
-    {
-        public Mocha(Beverage beverage)
-        {
-            this.beverage = beverage;
-        }
-        public override double Cost()
-        {
-            return beverage.Cost() + .20;
-        }
-
-        public override string GetDescription()
-        {
-            return beverage.GetDescription() + ", Mocha";
-        }
-    }
-
-    public class Soy : CondimentDecorator
-    {
-        public Soy(Beverage beverage)
-        {
-            this.beverage = beverage;
-        }
-        public override double Cost()
-        {
-            return beverage.Cost() + .15;
-        }
-
-        public override string GetDescription()
-        {
-            return beverage.GetDescription() + ", Soy";
-        }
-    }
-
-    public class Whip : CondimentDecorator
-    {
-        public Whip(Beverage beverage)
-        {
-            this.beverage = beverage;
-        }
-        public override double Cost()
-        {
-            return beverage.Cost() + .10;
-        }
-
-        public override string GetDescription()
-        {
-            return beverage.GetDescription() + ", Whip";
         }
     }
 }
