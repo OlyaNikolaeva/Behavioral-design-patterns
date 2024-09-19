@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace PizzaStore_Factory_.pizzas
 {
@@ -13,42 +14,36 @@ namespace PizzaStore_Factory_.pizzas
         public string? Sauce;
         public List<string> Toppings = new List<string>();
 
-        public string? GetName()
-        {
-            return Name;
-        }
-
         public void Prepare()
         {
-            Console.WriteLine("Preparing " + Name);
+            Console.WriteLine("Prepare " + Name);
+            Console.WriteLine("Tossing dough...");
+            Console.WriteLine("Adding sauce...");
+            Console.WriteLine("Adding toppings: ");
+            foreach (string topping in Toppings)
+            {
+                Console.WriteLine(" " + topping);
+            }
         }
 
         public void Bake()
         {
-            Console.WriteLine("Baking " + Name);
+            Console.WriteLine("Bake for 25 minutes at 350");
         }
 
         public void Cut()
         {
-            Console.WriteLine("Cutting " + Name);
+            Console.WriteLine("Cut the pizza into diagonal slices");
         }
 
         public void Box()
         {
-            Console.WriteLine("Boxing " + Name);
+            Console.WriteLine("Place pizza in official PizzaStore box");
         }
 
-        public string Display()
+        public string? GetName()
         {
-            StringBuilder display = new StringBuilder();
-            display.Append("---- " + Name + " ----\n");
-            display.Append(Dough + "\n");
-            display.Append(Sauce + "\n");
-            foreach (string topping in Toppings)
-            {
-                display.Append(topping + "\n");
-            }
-            return display.ToString();
+            return Name;
         }
     }
 }
