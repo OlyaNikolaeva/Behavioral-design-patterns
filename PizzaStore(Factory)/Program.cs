@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Xml.Linq;
+using PizzaStore_Factory_.pizzas;
 
 namespace PizzaStore_Factory_
 {
@@ -12,57 +13,21 @@ namespace PizzaStore_Factory_
 
     }
 
-    public abstract class Pizza
-    {
-        string? Name;
-        string? Dough;
-        string? Sauce;
-        List<string> Toppings = new List<string>();
-
-        public string? GetName()
-        { 
-            return Name; 
-        }
-
-        public void Prepare()
-        {
-            Console.WriteLine("Preparing " + Name);
-        }
-
-        public void Bake()
-        {
-            Console.WriteLine("Baking " + Name);
-        }
-
-        public void Cut()
-        {
-            Console.WriteLine("Cutting " + Name);
-        }
-
-        public void Box()
-        {
-            Console.WriteLine("Boxing " + Name);
-        }
-
-        public string Display()
-        {
-            StringBuilder display = new StringBuilder();
-            display.Append("---- " + Name + " ----\n");
-            display.Append(Dough + "\n");
-            display.Append(Sauce + "\n");
-            foreach (string topping in Toppings)
-            {
-                display.Append(topping + "\n");
-            }
-            return display.ToString();
-        }
-    }
-
     public class PizzaStore
     {
+        //Передается ссылка.
+        SimplePizzaFactory factory;
+
+        //Сохраняет ссылку на фабрику в конструкторе.
+        public PizzaStore(SimplePizzaFactory factory)
+        {
+            this.factory = factory;
+        }
         public Pizza OrderPizza(string type)
         {
-            Pizza pizza = null;
+            Pizza pizza;
+
+            pizza = factory.CreatePizza(type);
 
             pizza.Prepare();
             pizza.Bake();
@@ -70,31 +35,6 @@ namespace PizzaStore_Factory_
             pizza.Box();
             return pizza;
         }
-    }
-
-    public class CheesePizza: Pizza
-    {
-        
-    }
-
-    public class GreekPizza : Pizza
-    {
-
-    }
-
-    public class PepperoniPizza : Pizza
-    {
-
-    }
-
-    public class ClamiPizza : Pizza
-    {
-
-    }
-
-    public class VeggiePizza : Pizza
-    {
-
     }
 
     public class SimplePizzaFactory
@@ -105,12 +45,10 @@ namespace PizzaStore_Factory_
 
             if (type.Equals("cheese"))
                 pizza = new CheesePizza();
-            else if (type.Equals("greek"))
-                pizza = new GreekPizza();
             else if (type.Equals("pepperoni"))
                 pizza = new PepperoniPizza();
             else if (type.Equals("clam"))
-                pizza = new ClamiPizza();
+                pizza = new ClamPizza();
             else if (type.Equals("veggie"))
                 pizza = new VeggiePizza();
 
