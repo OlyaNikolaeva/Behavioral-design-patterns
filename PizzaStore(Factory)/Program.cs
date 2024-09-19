@@ -1,5 +1,4 @@
-﻿using System.Text;
-using System.Xml.Linq;
+﻿using PizzaStore_Factory_.NYpizzas;
 using PizzaStore_Factory_.pizzas;
 
 namespace PizzaStore_Factory_
@@ -13,21 +12,14 @@ namespace PizzaStore_Factory_
 
     }
 
-    public class PizzaStore
+    public abstract class PizzaStore
     {
-        //Передается ссылка.
-        SimplePizzaFactory factory;
-
-        //Сохраняет ссылку на фабрику в конструкторе.
-        public PizzaStore(SimplePizzaFactory factory)
+        // Все субклассы используют метод.
+        public Pizza? OrderPizza(string type)
         {
-            this.factory = factory;
-        }
-        public Pizza OrderPizza(string type)
-        {
-            Pizza pizza;
+            Pizza? pizza;
 
-            pizza = factory.CreatePizza(type);
+            pizza = CreatePizza(type);
 
             pizza.Prepare();
             pizza.Bake();
@@ -35,11 +27,62 @@ namespace PizzaStore_Factory_
             pizza.Box();
             return pizza;
         }
+        //Каждый субкласс переопределяет метод.
+        public abstract Pizza? CreatePizza(string type);
     }
+
+    public class NYPizzaStore : PizzaStore
+    {
+        public override Pizza? CreatePizza(String item)
+        {
+            if (item.Equals("cheese"))
+            {
+                return new NYStyleCheesePizza();
+            }
+            else if (item.Equals("veggie"))
+            {
+                return new NYStyleVeggiePizza();
+            }
+            else if (item.Equals("clam"))
+            {
+                return new NYStyleClamPizza();
+            }
+            else if (item.Equals("pepperoni"))
+            {
+                return new NYStylePepperoniPizza();
+            }
+            return null;
+        }
+    }
+
+    public class ChicagoPizzaStore : PizzaStore
+    {
+        public override Pizza? CreatePizza(String item)
+        {
+            if (item.Equals("cheese"))
+            {
+                return new ChicagoStyleCheesePizza();
+            }
+            else if (item.Equals("veggie"))
+            {
+                return new ChicagoStyleVeggiePizza();
+            }
+            else if (item.Equals("clam"))
+            {
+                return new ChicagoStyleClamPizza();
+            }
+            else if (item.Equals("pepperoni"))
+            {
+                return new ChicagoStylePepperoniPizza();
+            }
+            return null;
+        }
+    }
+
 
     public class SimplePizzaFactory
     {
-        public Pizza CreatePizza(string type)
+        public Pizza? CreatePizza(string type)
         {
             Pizza pizza = null;
 
@@ -55,4 +98,6 @@ namespace PizzaStore_Factory_
             return pizza;
         }
     }
+
+
 }
