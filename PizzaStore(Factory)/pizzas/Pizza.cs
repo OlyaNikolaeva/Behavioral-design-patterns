@@ -10,21 +10,14 @@ namespace PizzaStore_Factory_.pizzas
     public abstract class Pizza
     {
         public string? Name;
-        public string? Dough;
-        public string? Sauce;
-        public List<string> Toppings = new List<string>();
+        public IDough? Dough;
+        public ISauce? Sauce;
+        public IVeggies[]? Veggies;
+        public ICheese? Cheese;
+        public IPepperoni? Pepperoni;
+        public IClams? Clams;
 
-        public void Prepare()
-        {
-            Console.WriteLine("Prepare " + Name);
-            Console.WriteLine("Tossing dough...");
-            Console.WriteLine("Adding sauce...");
-            Console.WriteLine("Adding toppings: ");
-            foreach (string topping in Toppings)
-            {
-                Console.WriteLine(" " + topping);
-            }
-        }
+        public abstract void Prepare();
 
         public void Bake()
         {
@@ -44,6 +37,16 @@ namespace PizzaStore_Factory_.pizzas
         public string? GetName()
         {
             return Name;
+        }
+
+        public void SetName(string name)
+        {
+            this.Name = name;
+        }
+
+        public string ToString()
+        {
+            return "";
         }
     }
 }
