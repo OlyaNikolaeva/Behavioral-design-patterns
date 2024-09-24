@@ -1,11 +1,11 @@
 ﻿using PizzaStore_Factory_.CHpizzas;
 using PizzaStore_Factory_.pizzas;
 
-namespace PizzaStore_Factory_
+namespace PizzaStore_Factory_.stores
 {
     public class ChicagoPizzaStore : PizzaStore
     {
-        protected override Pizza? CreatePizza(String item)
+        protected override Pizza? CreatePizza(string item)
         {
             if (item.Equals("cheese"))
             {

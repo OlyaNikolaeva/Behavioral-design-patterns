@@ -1,6 +1,6 @@
 ﻿using PizzaStore_Factory_.pizzas;
 
-namespace PizzaStore_Factory_
+namespace PizzaStore_Factory_.factories
 {
     public class SimplePizzaFactory
     {
