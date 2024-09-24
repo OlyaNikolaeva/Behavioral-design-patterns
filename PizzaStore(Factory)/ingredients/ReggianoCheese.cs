@@ -1,4 +1,6 @@
-﻿namespace PizzaStore_Factory_.ingredients
+﻿using PizzaStore_Factory_.ingredients.interfaces;
+
+namespace PizzaStore_Factory_.ingredients
 {
     public class ReggianoCheese : ICheese
     {

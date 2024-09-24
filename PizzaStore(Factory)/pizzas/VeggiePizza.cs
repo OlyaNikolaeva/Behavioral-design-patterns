@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PizzaStore_Factory_.factories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +9,19 @@ namespace PizzaStore_Factory_.pizzas
 {
     public class VeggiePizza : Pizza
     {
-        public VeggiePizza()
+        IPizzaIngredientFactory ingredientFactory;
+
+        public VeggiePizza(IPizzaIngredientFactory ingredientFactory)
         {
-            Name = "Veggie Pizza";
-            Dough = "Crust";
-            Sauce = "Marinara sauce";
-            Toppings.Add("Shredded mozzarella");
-            Toppings.Add("Grated parmesan");
-            Toppings.Add("Diced onion");
-            Toppings.Add("Sliced mushrooms");
-            Toppings.Add("Sliced red pepper");
-            Toppings.Add("Sliced black olives");
+            this.ingredientFactory = ingredientFactory;
+        }
+
+        public override void Prepare()
+        {
+            Console.WriteLine("Preparing " + Name);
+            Dough = ingredientFactory.CreateDough();
+            Sauce = ingredientFactory.CreateSauce();
+            Cheese = ingredientFactory.CreateCheese();
         }
     }
 }
