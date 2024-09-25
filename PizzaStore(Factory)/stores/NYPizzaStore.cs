@@ -1,5 +1,4 @@
 ﻿using PizzaStore_Factory_.factories;
-using PizzaStore_Factory_.NYpizzas;
 using PizzaStore_Factory_.pizzas;
 
 namespace PizzaStore_Factory_.stores
