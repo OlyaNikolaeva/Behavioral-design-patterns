@@ -2,11 +2,11 @@
 
 namespace PizzaStore_Factory_.ingredients
 {
-    public class ReggianoCheese : ICheese
+    public class FrozenClams : IClams
     {
         public string ToString()
         {
-            return "Reggiano Cheese";
+            return "Frozen Clams";
         }
     }
 }

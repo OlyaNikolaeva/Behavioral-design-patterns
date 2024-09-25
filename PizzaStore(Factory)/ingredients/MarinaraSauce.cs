@@ -9,7 +9,7 @@ namespace PizzaStore_Factory_.ingredients
 {
     public class MarinaraSauce : ISauce
     {
-        public String ToString()
+        public string ToString()
         {
             return "Marinara Sauce";
         }

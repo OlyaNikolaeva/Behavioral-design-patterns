@@ -3,16 +3,16 @@ using PizzaStore_Factory_.ingredients.interfaces;
 
 namespace PizzaStore_Factory_.factories
 {
-    public class NYPizzaIngredientFactory : IPizzaIngredientFactory
+    public class ChicagoPizzaIngredientFactory : IPizzaIngredientFactory
     {
         public ICheese CreateCheese()
         {
-            return new ReggianoCheese();
+            return new MozzarellaCheese();
         }
 
         public IClams CreateClaim()
         {
-            return new FreshClams();
+            return new FrozenClams();
         }
 
         public IDough CreateDough()
@@ -27,7 +27,7 @@ namespace PizzaStore_Factory_.factories
 
         public ISauce CreateSauce()
         {
-            return new MarinaraSauce();
+            return new PlumTomatoSauce();
         }
 
         public IVeggies[] CreateVeggies()
