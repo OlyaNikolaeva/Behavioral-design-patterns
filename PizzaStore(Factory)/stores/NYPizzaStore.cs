@@ -1,4 +1,5 @@
-﻿using PizzaStore_Factory_.NYpizzas;
+﻿using PizzaStore_Factory_.factories;
+using PizzaStore_Factory_.NYpizzas;
 using PizzaStore_Factory_.pizzas;
 
 namespace PizzaStore_Factory_.stores
@@ -7,23 +8,30 @@ namespace PizzaStore_Factory_.stores
     {
         protected override Pizza? CreatePizza(string item)
         {
+            Pizza? pizza = null;
+            IPizzaIngredientFactory ingredientFactory = new NYPizzaIngredientFactory();
+
             if (item.Equals("cheese"))
             {
-                return new NYStyleCheesePizza();
+                pizza = new CheesePizza(ingredientFactory);
+                pizza.SetName("New York Style Cheese Pizza");
             }
             else if (item.Equals("veggie"))
             {
-                return new NYStyleVeggiePizza();
+                pizza = new VeggiePizza(ingredientFactory);
+                pizza.SetName("New York Style Veggie Pizza");
             }
             else if (item.Equals("clam"))
             {
-                return new NYStyleClamPizza();
+                pizza = new ClamPizza(ingredientFactory);
+                pizza.SetName("New York Style Clam Pizza");
             }
             else if (item.Equals("pepperoni"))
             {
-                return new NYStylePepperoniPizza();
+                pizza = new PepperoniPizza(ingredientFactory);
+                pizza.SetName("New York Style Pepperoni Pizza");
             }
-            return null;
+            return pizza;
         }
     }
 
